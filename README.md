@@ -22,7 +22,7 @@ Final Project Repository:
 6. Prepare report and presentation 05/03/22
 
 
-# 📝 About the technique we are tyring to approach
+## 📝 About the technique we are tyring to approach
 
 [block:api-header]
 {
@@ -34,7 +34,7 @@ Final Project Repository:
 * It is bascially the fundamental API, which we are tyring to approach by using self-supervised way to perform a depth estimation by using monocular instead of access binocular investigation.
 
 
-# 🚦 Interactive Deocuments & References
+## 🚦 Interactive Deocuments & References
 
 ### Monodepth [Reference](https://github.com/nianticlabs/monodepth2)
 
