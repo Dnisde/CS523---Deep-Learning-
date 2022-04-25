@@ -1,4 +1,4 @@
-# CS523 - Deep-Learning 
+# Computer Vision in Monocular Depth Estimation
 Final Project Repository: 
 
 ### Project Approach & Task: 
@@ -71,7 +71,7 @@ year = {2019}
 ```
 
 
-# 💬 Modular Design based on Story
+## 💬 Modular Design based on Story
 
 ### Main User Story:
 
