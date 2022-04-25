@@ -1,4 +1,4 @@
-# CS523 - Deep-Learning 
+# Computer Vision in Monocular Depth Estimation
 Final Project Repository: 
 
 ### Project Approach & Task: 
