@@ -15,13 +15,14 @@ Final Project Repository:
 
 **Our milestone are basically divided into three essential part:**
 
-* Target													Deadline
-1. Familiar with Monodepth & All Theorem Deadline 			03/20/22 
-2. Downloading Datasets 									04/01/22
-3. Re-implement Monodepth(Train and Test) 					04/06/22
-4. Optimization: Improve the Defects (If achievable) 		04/15/22
-5. Test and Training model by accessing KITTI 				04/25/22
-6. Prepare report and presentation 							05/03/22
+| Target      | Approached Date |
+| ----------- | ----------- |
+| Familiar with Monodepth & All Theorem Deadline | 03/20/22 |
+| Downloading Datasets | 04/01/22 |
+| Re-implement Monodepth(Train and Test) | 04/06/22 |
+| Optimization: Improve the Defects (If achievable) | 04/15/22 |
+| Test and Training model by accessing KITTI | 04/25/22 |
+| Prepare report and presentation | 05/03/22|
 
 
 ## 📝 About the technique we are tyring to approach
