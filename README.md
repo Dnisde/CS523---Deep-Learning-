@@ -27,11 +27,11 @@ Final Project Repository:
 
 ## 📝 About the technique we are tyring to approach
 
-[block:api-header]
+<block:api-header>
 {
   "title": "Computer Vision Application by using Monocular-Depth-Estimation Algorithm"
 }
-[/block]
+</block>
 
 ** **
 
