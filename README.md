@@ -32,6 +32,7 @@ Final Project Repository:
   "title": "Computer Vision Application by using Monocular-Depth-Estimation Algorithm"
 }
 [/block]
+
 ** **
 
 * It is bascially the fundamental API, which we are tyring to approach by using self-supervised way to perform a depth estimation by using monocular instead of access binocular investigation.
@@ -71,15 +72,44 @@ year = {2019}
 ```
 
 
-## 💬 Modular Design based on Story
+## 💬 Digging into the "Monodepth-V2" VS "Monodepth" 
 
-### Main User Story:
 
-> 👍 User Story #
+### 📝 Per-Pixel Minimum Reprojection Loss: 逐像素最小重投影误差损失
+
+> Problem: Existing average together the reprojection error into each of the available source images, It can cause issues with pixels that are visible in the target image, but are not visible in some of the source images.
 >
-> 
+> Inituitive: The Per-Pixel Minimum Reprojection Loss can help with it rather than Average. It has been validated effectivelly improves the sharpness of occlusion boundaries, and leads to better accuracy.
 
-> 📘 User Story #
->
-> 
 
+**Introduction:** 
+
+**Code explaination: (in Python - Pytorch)**
+
+```python
+
+```
+
+### 📝 Auto-Masking Stationary Pixels: 自动过滤平稳像素
+
+> Problem: When the camera is stationary or there is object motion in the scene, The monocular Depth estimation based on Self-supervised monocular training performance can suffer greatly. 
+> 
+> Intuitive: A simple auto-masking method that filters out pixels which do not change appearance from one frame to the next in the sequence. This has the effect of letting the network ignore objects which move at the same velocity as the camera, and even to ignore whole frames in monocular videos when the camera stops moving.
+
+**Introduction:** 
+
+**Code explaination: (in Python - Pytorch)**
+
+```python
+
+```
+
+
+## Self-Construction Testing Dataset: 
+
+
+
+
+## 💬 Results:
+
+>  
