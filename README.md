@@ -48,6 +48,14 @@ Computer Vision Application by using Monocular-Depth-Estimation Algorithm
 >
 > [ICCV 2019 (arXiv pdf)](https://arxiv.org/abs/1806.01260)
 
+- "Effective of Monodepth: "
+
+<p align="center">
+  <img src="Picture/monodepth1.gif" alt="example input output gif" width="600" />
+</p>
+
+- "Effective of Monodepth2: "
+
 <p align="center">
   <img src="Picture/teaser.gif" alt="example input output gif" width="600" />
 </p>
