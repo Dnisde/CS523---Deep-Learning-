@@ -27,7 +27,6 @@ Final Project Repository:
 
 ## 📝 About the technique we are tyring to approach
 
-<<<<<<< HEAD
 <div style="border: 5px solid black">
 Computer Vision Application by using Monocular-Depth-Estimation Algorithm
 </div>
