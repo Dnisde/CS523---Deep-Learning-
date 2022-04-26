@@ -27,11 +27,11 @@ Final Project Repository:
 
 ## 📝 About the technique we are tyring to approach
 
-[block:api-header]
+<div style="border: 5px solid black">
 {
-  "title": "Computer Vision Application by using Monocular-Depth-Estimation Algorithm"
+  Computer Vision Application by using Monocular-Depth-Estimation Algorithm
 }
-[/block]
+</div>
 
 ** **
 
