@@ -29,17 +29,8 @@ Final Project Repository:
 
 <<<<<<< HEAD
 <div style="border: 5px solid black">
-=======
-<block:api-header>
->>>>>>> 4834f47f312280971ef78051ed26d4bca0368da1
-{
-  Computer Vision Application by using Monocular-Depth-Estimation Algorithm
-}
-<<<<<<< HEAD
+Computer Vision Application by using Monocular-Depth-Estimation Algorithm
 </div>
-=======
-</block>
->>>>>>> 4834f47f312280971ef78051ed26d4bca0368da1
 
 ** **
 
