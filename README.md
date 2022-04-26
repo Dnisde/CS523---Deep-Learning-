@@ -75,7 +75,7 @@ year = {2019}
 ## 💬 Digging into the "Monodepth-V2" VS "Monodepth" 
 
 
-### 📝 Per-Pixel Minimum Reprojection Loss: 逐像素最小重投影误差损失
+### 📘 Per-Pixel Minimum Reprojection Loss: 逐像素最小重投影误差损失
 
 > Problem: Existing average together the reprojection error into each of the available source images, It can cause issues with pixels that are visible in the target image, but are not visible in some of the source images.
 >
@@ -90,7 +90,7 @@ year = {2019}
 
 ```
 
-### 📝 Auto-Masking Stationary Pixels: 自动过滤平稳像素
+### 📘 Auto-Masking Stationary Pixels: 自动过滤平稳像素
 
 > Problem: When the camera is stationary or there is object motion in the scene, The monocular Depth estimation based on Self-supervised monocular training performance can suffer greatly. 
 > 
