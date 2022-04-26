@@ -27,11 +27,19 @@ Final Project Repository:
 
 ## 📝 About the technique we are tyring to approach
 
+<<<<<<< HEAD
 <div style="border: 5px solid black">
+=======
+<block:api-header>
+>>>>>>> 4834f47f312280971ef78051ed26d4bca0368da1
 {
   Computer Vision Application by using Monocular-Depth-Estimation Algorithm
 }
+<<<<<<< HEAD
 </div>
+=======
+</block>
+>>>>>>> 4834f47f312280971ef78051ed26d4bca0368da1
 
 ** **
 
