@@ -213,7 +213,7 @@ python evaluate_depth.py --load_weights_folder ~/tmp/stereo_model/models/weights
 
 ### Monodepth
 <p align="center">
-  <img src="Picture/monodepth1.PNG" alt="Result of Our Trained Model" width="600" />
+  <img src="Picture/monodepth1.png" alt="Result of Our Trained Model" width="600" />
 </p>
 
 Because the training time of monodepth model is too long (nearly 70 hours), we only trained for nearly 50 hours. This figure shows the test results of the model after 50 hours of training. It can be seen that some details are missing compared with the pre trained model, but the overall depth of the scene can be seen.
