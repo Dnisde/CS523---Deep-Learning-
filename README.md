@@ -1,29 +1,22 @@
 # Computer Vision in Monocular Depth Estimation
-Final Project Repository: 
 
-### Project Approach & Task: 
+## Project Approach & Task: 
 - The purport of article - Monodepth [Reference](https://arxiv.org/abs/1806.01260), introduces the use of the Self-Supervised Monocular Depth estimation technique to generate the high quality depth-from-color image to complement the LIDAR sensors. 
 - Paragraphs mentioned in the paper implies the way of resolving the challenge in acquiring per-pixel ground-truth depth data at scale during the application with self-driving techniques. The authorship achieves state-of-the-art monocular depth estimation of the KITTI dataset, which performs well better than the supervised learning in ground truth depth training. However, the defect of this model is the occlusion boundary based on the pixels of the occlusion area are not visible on the way. 
 - For this project, we will try to rephrase the model first and pursue differences applying loss or model architecture itself to approach the same feasible affection or better.
 
-## About Monodepth:
-
-### Introduction: 
-- Per-pixel ground-truth depth data is challenging to acquire at scale. To overcome this limitation, self-supervised learning has emerged as a promising alternative for training models to perform monocular depth estimation. In this paper, we propose a set of improvements, which together result in both quantitatively and qualitatively improved depth maps compared to competing self-supervised methods.
-
 ## MileStone:
 
-**Our milestone are basically divided into three essential part:**
+**Our milestone are basically divided into six essential part:**
 
 | Target      | Approached Date |
 | ----------- | ----------- |
 | Familiar with Monodepth & All Theorem Deadline | 03/20/22 |
 | Downloading Datasets | 04/01/22 |
 | Re-implement Monodepth(Train and Test) | 04/06/22 |
-| Optimization: Improve the Defects (If achievable) | 04/15/22 |
-| Test and Training model by accessing KITTI | 04/25/22 |
+| Re-implement Monodepth2(Train and Test) | 04/15/22 |
+| Compare & Analyze their Results | 04/25/22 |
 | Prepare report and presentation | 05/03/22|
-
 
 ## 📝 About the technique we are tyring to approach
 
@@ -81,40 +74,89 @@ year = {2019}
 ## 💬 Digging into the "Monodepth-V2" VS "Monodepth" 
 
 
-### 📘 Per-Pixel Minimum Reprojection Loss: 逐像素最小重投影误差损失
+### 📘 Per-Pixel Minimum Reprojection Loss
 
 > Problem: Existing average together the reprojection error into each of the available source images, It can cause issues with pixels that are visible in the target image, but are not visible in some of the source images.
 >
 > Inituitive: The Per-Pixel Minimum Reprojection Loss can help with it rather than Average. It has been validated effectivelly improves the sharpness of occlusion boundaries, and leads to better accuracy.
 
 
-**Introduction:** 
-
-**Code explaination: (in Python - Pytorch)**
-
-```python
-
-```
-
-### 📘 Auto-Masking Stationary Pixels: 自动过滤平稳像素
+### 📘 Auto-Masking Stationary Pixels
 
 > Problem: When the camera is stationary or there is object motion in the scene, The monocular Depth estimation based on Self-supervised monocular training performance can suffer greatly. 
 > 
 > Intuitive: A simple auto-masking method that filters out pixels which do not change appearance from one frame to the next in the sequence. This has the effect of letting the network ignore objects which move at the same velocity as the camera, and even to ignore whole frames in monocular videos when the camera stops moving.
 
-**Introduction:** 
+## How to reimplement it:
 
-**Code explaination: (in Python - Pytorch)**
-
-```python
-
+### Prerequisites
+This code was tested with PyTorch 0.4.1, CUDA 9.1 and Ubuntu 16.04. Other required modules:
 ```
+torchvision
+numpy
+matplotlib
+easydict
+```
+### 📘 Dataset
+### KITTI
+This algorithm requires stereo-pair images for training and single images for testing. KITTI dataset was used for training. It contains 38237 training samples. Raw dataset (about 175 GB) can be downloaded by running:
+```
+wget -i kitti_archives_to_download.txt -P ~/my/output/folder/
+```
+kitti_archives_to_download.txt may be found in this repo.
 
+### 📘 Reimplement Monodepth Model
 
-## Self-Construction Testing Dataset: 
+#### Training
+Example of training can be find in Monodepth.ipynb notebook.
 
+Model class from main_monodepth_pytorch.py should be initialized with following params (as easydict) for training:
 
+- `data_dir`: path to the dataset folder
+- `val_data_dir`: path to the validation dataset folder
+- `model_path`: path to save the trained model
+- `output_directory`: where save dispairities for tested images
+- `input_height`
+- `input_width`
+- `model`: model for encoder (resnet18_md or resnet50_md or any torchvision version of Resnet (resnet18, resnet34 etc.)
+- `pretrained`: if use a torchvision model it's possible to download weights for pretrained model
+- `mode`: train or test
+- `epochs`: number of epochs,
+- `learning_rate`
+- `batch_size`
+- `adjust_lr`: apply learning rate decay or not
+- `tensor_type`:'torch.cuda.FloatTensor' or 'torch.FloatTensor'
+- `do_augmentation`:do data augmentation or not
+- `augment_parameters`:lowest and highest values for gamma, lightness and color respectively
+- `print_images`
+- `print_weights`
+- `input_channels`: Number of channels in input tensor (3 for RGB images)
+- `num_workers`: Number of workers to use in dataloader
+Optionally after initialization, we can load a pretrained model via `model.load`.
 
+After that calling train() on Model class object starts the training process.
+
+Also, it can be started via calling main_monodepth_pytorch.py through the terminal and feeding parameters as argparse arguments.
+
+#### Testing
+Example of training can be find in Monodepth notebook.
+
+Model class from main_monodepth_pytorch.py should be initialized with following params (as easydict) for training:
+- `data_dir`: path to the dataset folder
+- `model_path`: path to save the trained model
+- `pretrained`
+- `output_directory`: where save dispairities for tested images
+- `input_height`
+- `input_width`
+- `model`: model for encoder (resnet18 or resnet50)
+- `mode`: train or test
+- `input_channels`: Number of channels in input tensor (3 for RGB images)
+- `num_workers`: Number of workers to use in dataloader
+After that calling test() on Model class object starts testing process.
+
+Also it can be started via calling main_monodepth_pytorch.py through the terminal and feeding parameters as argparse arguments.
+
+### 📘 Reimplement Monodepth2 Model
 
 ## 💬 Results:
 
