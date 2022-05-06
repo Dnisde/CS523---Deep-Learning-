@@ -97,6 +97,14 @@ numpy
 matplotlib
 easydict
 ```
+You can install the dependencies with:
+```
+conda install pytorch=0.4.1 torchvision=0.2.1 -c pytorch
+pip install tensorboardX==1.4
+conda install opencv=3.3.1   # just needed for evaluation
+```
+For Monodepth2, we recommend to create a virtual environment with Python 3.6.6 `conda create -n monodepth2 python=3.6.6 anaconda`.
+
 ### 📘 Dataset
 ### KITTI
 This algorithm requires stereo-pair images for training and single images for testing. KITTI dataset was used for training. It contains 38237 training samples. Raw dataset (about 175 GB) can be downloaded by running:
@@ -157,7 +165,16 @@ After that calling test() on Model class object starts testing process.
 Also it can be started via calling main_monodepth_pytorch.py through the terminal and feeding parameters as argparse arguments.
 
 ### 📘 Reimplement Monodepth2 Model
+#### Training
+
+
+#### Testing
+
 
 ## 💬 Results:
 
->  
+### Monodepth
+
+
+### Monodepth2
+
