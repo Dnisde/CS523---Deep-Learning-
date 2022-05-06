@@ -44,13 +44,13 @@ Computer Vision Application by using Monocular-Depth-Estimation Algorithm
 * Effective of Monodepth: 
 
 <p align="center">
-  <img src="Picture/mono1.gif" alt="example input output gif" width="600" />
+  <img src="Picture/mono1.gif" alt="example input output gif" width="400" />
 </p>
 
 * Effective of Monodepth2: 
 
 <p align="center">
-  <img src="Picture/mono2.gif" alt="example input output gif" width="600" />
+  <img src="Picture/mono2.gif" alt="example input output gif" width="400" />
 </p>
 
 This code is for non-commercial use; please see the [license file](LICENSE) for terms.
@@ -109,13 +109,21 @@ For Monodepth2, we recommend to create a virtual environment with Python 3.6.6 `
 ### KITTI
 This algorithm requires stereo-pair images for training and single images for testing. KITTI dataset was used for training. It contains 38237 training samples. Raw dataset (about 175 GB) can be downloaded by running:
 ```
-wget -i kitti_archives_to_download.txt -P ~/my/output/folder/
+wget -i splits/kitti_archives_to_download.txt -P kitti_data/
 ```
 kitti_archives_to_download.txt may be found in this repo.
 
+Then unzip with
+
+```
+cd kitti_data
+unzip "*.zip"
+cd ..
+```
+
 ### 📘 Reimplement Monodepth Model
 
-#### Training
+### Training
 Example of training can be find in Monodepth.ipynb notebook.
 
 Model class from main_monodepth_pytorch.py should be initialized with following params (as easydict) for training:
@@ -146,7 +154,7 @@ After that calling train() on Model class object starts the training process.
 
 Also, it can be started via calling main_monodepth_pytorch.py through the terminal and feeding parameters as argparse arguments.
 
-#### Testing
+### Testing
 Example of training can be find in Monodepth notebook.
 
 Model class from main_monodepth_pytorch.py should be initialized with following params (as easydict) for training:
@@ -165,17 +173,50 @@ After that calling test() on Model class object starts testing process.
 Also it can be started via calling main_monodepth_pytorch.py through the terminal and feeding parameters as argparse arguments.
 
 ### 📘 Reimplement Monodepth2 Model
-#### Training
+### Training
+By default models and tensorboard event files are saved to `~/tmp/<model_name>`. This can be changed with the `--log_dir` flag.
 
+**Monocular training:**
+```
+python train.py --model_name mono_model
+```
+**Stereo training:**
 
-#### Testing
+Our code defaults to using Zhou's subsampled Eigen training data. For stereo-only training we have to specify that we want to use the full Eigen training set – see paper for details.
+```
+python train.py --model_name stereo_model \
+  --frame_ids 0 --use_stereo --split eigen_full
+```
+**Monocular + stereo training:**
+```
+python train.py --model_name mono+stereo_model \
+  --frame_ids 0 -1 1 --use_stereo
+```
+### Testing
+To prepare the ground truth depth maps run:
+```
+python export_gt_depth.py --data_path kitti_data --split eigen
+python export_gt_depth.py --data_path kitti_data --split eigen_benchmark
+```
+...assuming that you have placed the KITTI dataset in the default location of `./kitti_data/`.
 
+The following example command evaluates the epoch 19 weights of a model named `mono_model`:
+```
+python evaluate_depth.py --load_weights_folder ~/tmp/mono_model/models/weights_19/ --eval_mono
+```
+For stereo models, you must use the `--eval_stereo` flag (see note below):
+```
+python evaluate_depth.py --load_weights_folder ~/tmp/stereo_model/models/weights_19/ --eval_stereo
+```
 
 ## 💬 Results:
 
 ### Monodepth
+<p align="center">
+  <img src="Picture/monodepth1.PNG" alt="Result of Our Trained Model" width="600" />
+</p>
 
-
+Because the training time of monodepth model is too long (nearly 70 hours), we only trained for nearly 50 hours. This figure shows the test results of the model after 50 hours of training. It can be seen that some details are missing compared with the pre trained model, but the overall depth of the scene can be seen.
 ### Monodepth2
 - Result of Pretrained Model 
 <p align="center">
@@ -186,3 +227,8 @@ Also it can be started via calling main_monodepth_pytorch.py through the termina
 <p align="center">
   <img src="Picture/ourmodel.PNG" alt="Result of Our Trained Model" width="600" />
 </p>
+
+From the two figures above, we can see that the evaluation result  of our model is pretty close to the pretrained model with same image resolution. 
+
+## 📊 Conclusion
+In this project, we reimplemented monodepth and monodepth2 models successfully, evaluated their performance respectively, and compared their results with ours. However, because the training of monodepth model is too time-consuming, it takes nearly 70 hours to complete the training. So the performance of the monodepth model we trained is not as good as that of the pretrained model. Therefore, if possible, we will try to train the model again to see if it will have a better performance. In a word, we learned more about self supervised learning, and had a better understanding of the training method of monocular depth prediction, as well as how the loss function of different targets works.
